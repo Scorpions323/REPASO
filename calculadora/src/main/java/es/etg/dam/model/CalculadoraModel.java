@@ -2,7 +2,7 @@ package es.etg.dam.model;
 
 public class CalculadoraModel {
 
-    private static final String MSG_ERROR = "No se puede dividir por 0";
+    private static final String MSG_ERROR = "No se puede dividir entre 0";
 
     public double cuadrado(double a) {
         return a * a;
