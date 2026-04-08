@@ -22,7 +22,7 @@ public class CalculadoraModel {
 
     public double division(double a, double b) {
         if (b == 0) {
-            throw new IllegalArgumentException(MSG_ERROR);
+            throw new IllegalArgumentException(CalculadoraModel.MSG_ERROR);
         }
         return a / b;
     }
