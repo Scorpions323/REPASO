@@ -1,29 +1,32 @@
 package es.etg.dam.model;
 
 public class CalculadoraModel {
+    public static final String SUMA = "+";
+    public static final String RESTA = "-";
+    public static final String MULTIPLICACION = "*";
+    public static final String DIVISION = "/";
 
-    private static final String MSG_ERROR = "No se puede dividir entre 0";
+    public static final String MSG_ERROR_OPERACION = "ERROR: operación no válida";
+    public static final String MSG_ERROR_NUMERO = "ERROR: número no válido";
+    public static final String MSG_ERROR_DIVISION = "ERROR: no se puede dividir entre 0";
 
-    public double cuadrado(double a) {
-        return a * a;
-    }
+    public String calcular(String num1, String operador, String num2) {
 
-    public double suma(double a, double b) {
-        return a + b;
-    }
+        double n1, n2;
 
-    public double resta(double a, double b) {
-        return a - b;
-    }
-
-    public double multiplicacion(double a, double b) {
-        return a * b;
-    }
-
-    public double division(double a, double b) {
-        if (b == 0) {
-            throw new IllegalArgumentException(CalculadoraModel.MSG_ERROR);
+        try {
+            n1 = Double.parseDouble(num1);
+            n2 = Double.parseDouble(num2);
+        } catch (NumberFormatException e) {
+            return MSG_ERROR_NUMERO;
         }
-        return a / b;
+
+        return switch (operador) {
+            case SUMA -> String.valueOf(n1 + n2);
+            case RESTA -> String.valueOf(n1 - n2);
+            case MULTIPLICACION -> String.valueOf(n1 * n2);
+            case DIVISION -> n2 != 0 ? String.valueOf(n1 / n2) : MSG_ERROR_DIVISION;
+            default -> MSG_ERROR_OPERACION;
+        };
     }
 }
