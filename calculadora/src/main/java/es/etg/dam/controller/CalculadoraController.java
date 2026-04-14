@@ -1,19 +1,18 @@
 package es.etg.dam.controller;
 
 import es.etg.dam.model.CalculadoraModel;
+import es.etg.dam.exceptions.CalculadoraException;
 
 public class CalculadoraController {
 
     private final CalculadoraModel model = new CalculadoraModel();
 
     public String procesar(String operacion) {
-
-        String[] partes = operacion.trim().split(" ");
-
-        if (partes.length != 3) {
-            return CalculadoraModel.MSG_ERROR_OPERACION;
+        try {
+            String[] p = operacion.split(" ");
+            return model.calcular(p[0], p[1], p[2]);
+        } catch (CalculadoraException e) {
+            return e.getMessage();
         }
-
-        return model.calcular(partes[0], partes[1], partes[2]);
     }
 }
